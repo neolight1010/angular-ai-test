@@ -1,24 +1,25 @@
 // login-form.component.ts
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-form',
   templateUrl: "./login-screen.component.html",
+  imports: [ReactiveFormsModule]
 })
 export class LoginFormComponent {
-  fromGroup: FormGroup;
+  loginForm: FormGroup;
   
   constructor(private fb: FormBuilder) {
-    this.fromGroup = this.fb.group({
+    this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
   onSubmit() {
-    if (this.fromGroup.valid) {
-      console.log('Form submitted', this.fromGroup.value);
+    if (this.loginForm.valid) {
+      console.log('Form submitted', this.loginForm.value);
       // Handle form submission
     }
   }
